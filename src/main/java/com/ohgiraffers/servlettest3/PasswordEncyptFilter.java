@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter("/member/*")
+@WebFilter("/user/*")
 public class PasswordEncyptFilter implements Filter {
 
     @Override
@@ -25,5 +25,6 @@ public class PasswordEncyptFilter implements Filter {
 
     @Override
     public void destroy() {}
+
 
 }

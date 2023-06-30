@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/order")
+@WebServlet("/user/order")
 public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +25,7 @@ public class OrderServlet extends HttpServlet {
         System.out.println("주소 : " + add);
 
         HttpSession session = req.getSession();
+        session.setMaxInactiveInterval(60*10);
         session.setAttribute("name",name);
 
         StringBuilder responseText = new StringBuilder();
@@ -37,7 +38,7 @@ public class OrderServlet extends HttpServlet {
                 .append("<h3 style=\"align-content: center;\">")
                 .append(name)
                 .append("님 환영 합니다</h3>")
-                .append("<a href=order.jsp>주문하기</a>")
+                .append("<a href=\"/order.jsp\">주문하기</a>")
                 .append("</body>")
                 .append("</html>");
 
@@ -46,5 +47,4 @@ public class OrderServlet extends HttpServlet {
         out.print(responseText.toString());
         out.flush();
     }
-
 }

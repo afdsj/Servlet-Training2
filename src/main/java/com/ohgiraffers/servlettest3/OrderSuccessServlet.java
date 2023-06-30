@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 @WebServlet("/ordersuccess")
 public class OrderSuccessServlet extends HttpServlet {
@@ -19,17 +20,14 @@ public class OrderSuccessServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String name = (String) session.getAttribute("name");
         System.out.println("이름 : " + name);
-        String menu = (String) session.getAttribute("menu");
+        String menu = req.getParameter("menu");
         System.out.println("메뉴 : " + menu);
-        String topping = (String) session.getAttribute("topping");
+        String topping = req.getParameter("topping");
         System.out.println("토핑 : " + topping);
-        String review = (String) session.getAttribute("review");
+        String review = req.getParameter("review");
         System.out.println("리뷰 : " + review);
-//        String name = (String) req.getAttribute("name");
-//        String menu = (String) req.getAttribute("menu");
-//        String topping = (String) req.getAttribute("topping");
-//        String review = (String) req.getAttribute("review");
-
+        Date time = new Date();
+        System.out.println(new java.util.Date());
 
         StringBuilder responseText = new StringBuilder();
         responseText.append("<!doctype html>\n")
@@ -47,6 +45,8 @@ public class OrderSuccessServlet extends HttpServlet {
                 .append("<label>토핑 : </label>" + topping)
                 .append("<br/>")
                 .append("<label>리뷰 이벤트 : </label>" + review)
+                .append("<br/>")
+                .append("<label>주문 시간 : </label>" + time)
                 .append("</body>")
                 .append("</html>");
 
